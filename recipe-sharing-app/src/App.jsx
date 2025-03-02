@@ -12,18 +12,20 @@ function App() {
   return (
    <>
     
-    <BrowserRouter>
-      <Navbar/>
-      <SearchBar/>
-      <Routes>
-      <Route path="/" element={<RecipeList />} />
-      <Route path="/recipe" element={<RecipeDetails />} />
-      </Routes>
-    </BrowserRouter>
-    <RecipeDetails/>
-    <RecipeList/>
-    <EditRecipeForm/>
-    <DeleteRecipeButton/>
+    <Router>
+      <div>
+        <SearchBar /> {/* Add the SearchBar component here */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/recipes" element={<RecipeList />} /> {/* Add the RecipeList route here */}
+          <Route path="/recipe/:id" element={<RecipeDetails />} />
+          <Route path="/edit/:id" element={<EditRecipeForm />} />
+        </Routes>
+      </div>
+    </Router>
+   
+    
+   
 
     </>
   )

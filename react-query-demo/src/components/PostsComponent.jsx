@@ -7,7 +7,11 @@ const fetchPosts = async () => {
 
 const ReactQueryExample = () => {
     // Use the useQuery hook to handle data fetching and caching
-    const { data, isError, isLoading } = useQuery('fetchPosts', fetchPosts);
+    const queryKey = ['posts']; // Define your query key
+    const { data, isError, isLoading } = useQuery({
+        queryKey: queryKey,
+        queryFn: fetchPosts,
+      });
 
     // Handle loading state
     if (isLoading) return <div>Loading...</div>;

@@ -7,20 +7,29 @@ const User = () => {
     return <h3>User ID: {userId}</h3>;
 };
 
+
 function Profile() {
-    let { path, url } = useMatch();
+    const match = useMatch('/example/:exampleId');
+
+  // Extract path and URL from the match object
+  const path = match ? match.pattern.path : null;
+  const url = match ? match.pathname : null;
 
     return(
         <div>
         <h2>Dashboard</h2>
 
         <ul>
+        {match && (
+            <div>
             <li>
                 <Link to={`${url}/profile`}>Profile</Link>
             </li>
             <li>
                 <Link to={`${url}/settings`}>Settings</Link>
             </li>
+            </div>
+        )}
             <li>
                 <Link to="/user/2">User 2</Link>
             </li>
@@ -33,19 +42,19 @@ function Profile() {
        
         <Routes>
           <Route exact path={path}>
-                  <h3>Please select an option.</h3>
+                  Please select an option.
             </Route>
             <Route path={`${path}/ProfileDetails`}>
-                <Profile />
+                
             </Route>
             <Route path={`${path}/ProfileSettings`}>
-                <Settings />
+                
             </Route>
             {/* Dynamic route with a userId parameter */}
             <Route path="/user/:userId" component={User} />
                 {/* Default route to Home component */}
             <Route path="/">
-                <h2>Home</h2>
+                Home
             </Route>
 
           

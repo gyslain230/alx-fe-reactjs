@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link, useMatch, Routes ,useParams} from 'react-router-dom';
 
-const User = () => {
+const blogPost = () => {
     // useParams hook is used to access route parameters
     const { userId } = useParams();
     return <h3>User ID: {userId}</h3>;
@@ -9,7 +9,7 @@ const User = () => {
 
 
 function Profile() {
-    const match = useMatch('/example/:exampleId');
+    const match = useMatch('/blog/:id');
 
   // Extract path and URL from the match object
   const path = match ? match.pattern.path : null;
@@ -31,10 +31,10 @@ function Profile() {
             </div>
         )}
             <li>
-                <Link to="/user/2">User 2</Link>
+                <Link to="/blog/2">User 2</Link>
             </li>
             <li>
-            <Link to="/user/1">User 1</Link>
+            <Link to="/blog/1">User 1</Link>
             </li>
         </ul>
 
@@ -51,7 +51,7 @@ function Profile() {
                 
             </Route>
             {/* Dynamic route with a userId parameter */}
-            <Route path="/user/:userId" component={User} />
+            <Route path="/blog/:id" component={blogPost} />
                 {/* Default route to Home component */}
             <Route path="/">
                 Home

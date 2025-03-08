@@ -1,7 +1,8 @@
-import React from "react";
+import React, { createContext, useContext, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Routes, Link, useParams } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link, useNavigate,useParams, Navigate, useLocation } from 'react-router-dom';
 import Profile from "./components/Profile";
+
 
 const BlogPost = () => {
   const { id } = useParams();
@@ -10,6 +11,7 @@ const BlogPost = () => {
 
 function App() {
   return (
+    
     <Router>
       <nav>
         <ul>

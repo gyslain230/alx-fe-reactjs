@@ -7,6 +7,13 @@ function Profile() {
   const match = useMatch("/blog/:id");
   const path = match?.pattern?.path;
   const url = match?.pathname;
+  const { toggleAuth } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    toggleAuth();
+    navigate('/');
+  };
 
   return (
     <div>
@@ -25,6 +32,11 @@ function Profile() {
         )}
        
       </ul>
+      <div>
+      <h2>Protected Profile</h2>
+      <button onClick={handleLogout}>Log out</button>
+      {/* Add your existing profile content here */}
+    </div>
 
       <Routes>
         

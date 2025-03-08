@@ -14,12 +14,12 @@ function RegistrationForm() {
         e.preventDefault();
 
         let validationErrors = {};
-        const username= !Formdata.username;
-        const password= !Formdata.password;
-        const email= !Formdata.email;
-        if (username) validationErrors.username = 'Username cannot be empty';
-        if (email) validationErrors.email = 'Email cannot be empty';
-        if (password) validationErrors.password = 'Password cannot be empty';
+        const username= Formdata.username;
+        const password= Formdata.password;
+        const email= Formdata.email;
+        if (!username) validationErrors.username = 'Username cannot be empty';
+        if (!email) validationErrors.email = 'Email cannot be empty';
+        if (!password) validationErrors.password = 'Password cannot be empty';
 
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);

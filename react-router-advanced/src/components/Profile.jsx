@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link, useMatch, Routes, useParams } fro
 
 const BlogPost = () => {
   const { id } = useParams(); // Changed from userId to id to match route parameter
-  return <h3>Blog Post ID: {id}</h3>;
+  return <h3>Blog Post ID: {id}</h3>; //["/blog/:id", "BlogPost"]
 };
 
 function Profile() {

@@ -9,17 +9,11 @@ function App() {
   return (
     <>
      <Router>
-      <nav>
-        <ul>
-          <li><Link to="/">Dashbord</Link></li>
-          
-        </ul>
-      </nav>
-      <Routes>
-        <Route path="/" >Home</Route>
-        <Route path="/profile" element={<Profile />} />
-      </Routes>
-    </Router>
+          <Routes>
+            <Route path="/" element={<div>Home</div>} />
+            <Route path="/blog/*" element={<Profile />} />
+          </Routes>
+        </Router>
       
     </>
   )

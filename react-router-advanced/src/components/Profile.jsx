@@ -1,68 +1,52 @@
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Link, useMatch, Routes ,useParams} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, useMatch, Routes, useParams } from 'react-router-dom';
 
-const blogPost = () => {
-    // useParams hook is used to access route parameters
-    const { userId } = useParams();
-    return <h3>User ID: {userId}</h3>;
+const BlogPost = () => {
+  const { id } = useParams(); // Changed from userId to id to match route parameter
+  return <h3>Blog Post ID: {id}</h3>;
 };
-
 
 function Profile() {
-    const match = useMatch("/blog/:id",);
+  const match = useMatch("/blog/:id");
+  const path = match?.pattern?.path;
+  const url = match?.pathname;
 
-  // Extract path and URL from the match object
-  const path = match ? match.pattern.path : null;
-  const url = match ? match.pathname : null;
-
-    return(
-        <div>
-        <h2>Dashboard</h2>
-
-        <ul>
-            <h2> BlogPost</h2>
+  return (
+    <div>
+      <h2>Dashboard</h2>
+      <ul>
+        <h2>Blog Posts</h2>
         {match && (
-            <div>
+          <div>
             <li>
-                <Link to={`${url}/profile`}>Profile</Link>
+              <Link to={`${url}/profile`}>Profile</Link>
             </li>
             <li>
-                <Link to={`${url}/settings`}>Settings</Link>
+              <Link to={`${url}/settings`}>Settings</Link>
             </li>
-            </div>
+          </div>
         )}
-            <li>
-                <Link to="/blog/2">User 2</Link>
-            </li>
-            <li>
-            <Link to="/blog/1">User 1</Link>
-            </li>
-        </ul>
+        <li>
+          <Link to="/blog/2">Blog Post 2</Link>
+        </li>
+        <li>
+          <Link to="/blog/1">Blog Post 1</Link>
+        </li>
+      </ul>
 
-        {/* Nested routes within the Dashboard component */}
-       
-        <Routes>
-          <Route exact path={path}>
-                  Please select an option.
-            </Route>
-            <Route path={`${path}/ProfileDetails`}>
-                
-            </Route>
-            <Route path={`${path}/ProfileSettings`}>
-                
-            </Route>
-            {/* Dynamic route with a userId parameter */}
-            <Route path="/blog/:id" component={blogPost} />
-                {/* Default route to Home component */}
-            <Route path="/">
-                Home
-            </Route>
-
-          
-
-        </Routes>
+      <Routes>
+        {/* Main blog post route */}
+        <Route path="/blog/:id" element={<BlogPost />} />
+        
+        {/* Nested routes */}
+        <Route path={`${path}/ProfileDetails`} element={<div>Profile Details</div>} />
+        <Route path={`${path}/ProfileSettings`} element={<div>Profile Settings</div>} />
+        
+        {/* Default route */}
+        <Route index element={<div>Please select an option.</div>} />
+      </Routes>
     </div>
-    )
-    
+  );
 };
+
 export default Profile;

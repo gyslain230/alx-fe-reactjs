@@ -25,6 +25,7 @@ function RegistrationForm() {
             console.log(Formdata);
         }
     };
+    //  ["value={username}", "value={email}", "value={password}"]
 
     return (
         <>

@@ -9,7 +9,7 @@ const blogPost = () => {
 
 
 function Profile() {
-    const match = useMatch('/blog/:id');
+    const match = useMatch("/blog/:id",);
 
   // Extract path and URL from the match object
   const path = match ? match.pattern.path : null;
@@ -20,6 +20,7 @@ function Profile() {
         <h2>Dashboard</h2>
 
         <ul>
+            <h2> BlogPost</h2>
         {match && (
             <div>
             <li>

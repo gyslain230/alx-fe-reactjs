@@ -1,7 +1,14 @@
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Link, useRouteMatch, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, useMatch, Routes ,useParams} from 'react-router-dom';
+
+const User = () => {
+    // useParams hook is used to access route parameters
+    const { userId } = useParams();
+    return <h3>User ID: {userId}</h3>;
+};
+
 function Profile() {
-    let { path, url } = useRouteMatch();
+    let { path, url } = useMatch();
 
     return(
         <div>
@@ -13,6 +20,12 @@ function Profile() {
             </li>
             <li>
                 <Link to={`${url}/settings`}>Settings</Link>
+            </li>
+            <li>
+                <Link to="/user/2">User 2</Link>
+            </li>
+            <li>
+            <Link to="/user/1">User 1</Link>
             </li>
         </ul>
 
@@ -27,6 +40,12 @@ function Profile() {
             </Route>
             <Route path={`${path}/ProfileSettings`}>
                 <Settings />
+            </Route>
+            {/* Dynamic route with a userId parameter */}
+            <Route path="/user/:userId" component={User} />
+                {/* Default route to Home component */}
+            <Route path="/">
+                <h2>Home</h2>
             </Route>
 
           

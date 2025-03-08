@@ -30,7 +30,7 @@ function App() {
         <Route path="/" element={<div>Home Page</div>} />
         
         {/* Blog parent route with nested routes */}
-        <Route path="/blog/*" element={<Profile />}>
+        <Route path="/blog/:id" element={<Profile />}>
           {/* Nested blog post route */}
           <Route path=":id" element={<BlogPost />} />
           

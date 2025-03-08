@@ -4,8 +4,7 @@ import * as Yup from 'yup';
 const validationSchema = Yup.object({
     username: Yup.string().required('username is required'),
     email: Yup.string().email('Invalid email').required('Email is required'),
-    password: Yup.string().password('Invalid password').required('Password is REQUIRED')
-});
+    password: Yup.string().min(8, 'Password must be at least 8 characters').required('Password is REQUIRED'),});
 
  function formikForm(){
 

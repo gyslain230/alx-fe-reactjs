@@ -3,8 +3,13 @@ import { create } from 'zustand'
 const useRecipeStore = create(set => ({
   recipes: [],
   searchTerm: '',
-  setSearchTerm: (term) => set({ searchTerm: term }),
   filteredRecipes: [],
+  setSearchTerm: (term) => set(state => {
+    const filteredRecipes = state.recipes.filter(recipe =>
+      recipe.title.toLowerCase().includes(term.toLowerCase())
+    );
+    return { searchTerm: term, filteredRecipes };
+  }),
   filterRecipes: () => set(state => ({
     filteredRecipes: state.recipes.filter(recipe =>
       recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
@@ -33,7 +38,6 @@ const useRecipeStore = create(set => ({
     );
     return { recommendations: recommended };
   }),
-  
 }));
 
 export default useRecipeStore;

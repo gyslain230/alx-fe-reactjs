@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 
-const fetchData = async () => {
+const fetchPosts = async () => {
     const res = await fetch('https://jsonplaceholder.typicode.com/posts');
     return res.json();
 };
 
 const ReactQueryExample = () => {
     // Use the useQuery hook to handle data fetching and caching
-    const { data, isError, isLoading } = useQuery('fetchData', fetchData);
+    const { data, isError, isLoading } = useQuery('fetchPosts', fetchPosts);
 
     // Handle loading state
     if (isLoading) return <div>Loading...</div>;

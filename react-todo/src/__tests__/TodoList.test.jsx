@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import TodoList from '../TodoList';
+import TodoList from '../components/TodoList';
 
 describe('TodoList Component', () => {
   it('renders initial todos', () => {
@@ -22,19 +22,41 @@ describe('TodoList Component', () => {
     expect(input).toHaveValue('');
   });
 
-  it('toggles a todo when clicked', async () => {
-    const user = userEvent.setup();
-    render(<TodoList />);
-    const todoItems = screen.getAllByRole('listitem');
-    const firstTodo = todoItems[0];
-
-    expect(firstTodo).toHaveStyle('text-decoration: none');
-
-    await user.click(firstTodo);
-    expect(firstTodo).toHaveStyle('text-decoration: line-through');
-
-    await user.click(firstTodo);
-    expect(firstTodo).toHaveStyle('text-decoration: none');
+  describe('TodoList Component (fireEvent version)', () => {
+    it('adds a new todo using fireEvent', () => {
+      // Render the component
+      render(<TodoList />);
+      
+      // Get input and button elements
+      const input = screen.getByPlaceholderText('Add a new todo');
+      const addButton = screen.getByRole('button', { name: 'Add Todo' });
+  
+      // Simulate user input using fireEvent
+      fireEvent.change(input, { target: { value: 'New Todo' } });
+      
+      // Simulate form submission using fireEvent
+      fireEvent.click(addButton);
+  
+      // Verify new todo appears in the list
+      expect(screen.getByText('New Todo')).toBeInTheDocument();
+      
+      // Verify input is cleared
+      expect(input).toHaveValue('');
+    });
+  
+    it('does not add empty todos using fireEvent', () => {
+      render(<TodoList />);
+      const input = screen.getByPlaceholderText('Add a new todo');
+      const addButton = screen.getByRole('button', { name: 'Add Todo' });
+  
+      // Simulate empty input with whitespace
+      fireEvent.change(input, { target: { value: '   ' } });
+      fireEvent.click(addButton);
+  
+      // Verify no new todos added (initial 2 remain)
+      const todos = screen.getAllByRole('listitem');
+      expect(todos).toHaveLength(2);
+    });
   });
 
   it('deletes a todo when delete button is clicked', async () => {

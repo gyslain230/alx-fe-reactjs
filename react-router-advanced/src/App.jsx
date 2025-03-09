@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes, Link, useNavigate, useParams, N
 import Profile from "./components/Profile";
 import ProtectedRoute from './components/ProtectedRoute';
 import AuthProvider from './components/AuthProvider';
+import Login from './components/Login';
 
 const BlogPost = () => {
   const { id } = useParams();
@@ -34,6 +35,9 @@ function App() {
         <Routes>
           {/* Home route */}
           <Route path="/" element={<div>Home Page</div>} />
+          {/* login route */}
+          <Route path='/login' element={<Login/>} />
+
 
           {/* Blog parent route with nested routes */}
           <Route path="/blog/:id" element={<Profile />}>

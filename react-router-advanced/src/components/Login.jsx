@@ -1,6 +1,7 @@
 // Login component
 
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate, Navigate, useLocation } from 'react-router-dom';
+import { useAuth } from './AuthProvider';
 
 function Login() {
     const { toggleAuth } = useAuth();

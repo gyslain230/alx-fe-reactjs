@@ -2,7 +2,7 @@ function UserProfile() {
   return (
     <div
       className="user-profile"
-      class="bg-gray-100 p-8 max-w-sm mx-auto my-20 rounded-lg shadow-lg sm:p-4 md:p-8  sm:max-w-xs md:max-w-screen-sm "
+      class="bg-gray-100 p-8 max-w-sm mx-auto my-20 rounded-lg shadow-lg sm:p-4 md:p-8  sm:max-w-xs md:max-w-sm "
     >
       <img
         src="https://via.placeholder.com/150"

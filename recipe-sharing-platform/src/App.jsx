@@ -8,6 +8,12 @@ function App() {
   return (
     <>
       <Router>
+        <Link
+          to="/add-recipe"
+          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+        >
+          Add New Recipe
+        </Link>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/recipes/:id" element={<RecipeDetail />} />

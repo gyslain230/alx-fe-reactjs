@@ -95,7 +95,7 @@ const AddRecipeForm = () => {
             )}
           </div>
 
-          {/* Ingredients Field */}
+          {/* Ingredients Field   "target.value" */}
           <div className="mb-6">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"

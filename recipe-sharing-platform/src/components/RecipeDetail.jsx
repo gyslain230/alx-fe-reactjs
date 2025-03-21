@@ -1,6 +1,9 @@
 // src/components/RecipeDetail.jsx
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+{
+  /* "ingredients", "instructions" */
+}
 
 const RecipeDetail = () => {
   const { id } = useParams();
@@ -52,18 +55,13 @@ const RecipeDetail = () => {
             <h1 className="text-3xl font-bold text-gray-800 mb-4">
               {recipe.title}
             </h1>
-            <p className="text-gray-600 text-lg">
-              <h1> ingredient</h1>
-              {recipe.summary}
-            </p>
+            <p className="text-gray-600 text-lg">{recipe.summary}</p>
           </div>
         </div>
 
         {/* Additional Content Placeholder */}
         <div className="bg-white rounded-lg shadow-md p-6 text-center">
-          <p className="text-gray-500 italic">
-            Recipe details coming soon! instruction
-          </p>
+          <p className="text-gray-500 italic">Recipe details coming soon!</p>
         </div>
       </div>
     </div>

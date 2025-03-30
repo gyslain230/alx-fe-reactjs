@@ -12,9 +12,10 @@ dist
 dist-ssr
 tests
 Search.test.jsx
-
-*.local
 .env
+.env.local
+*.local
+
 
 # Editor directories and files
 .vscode/*

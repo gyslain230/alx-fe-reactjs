@@ -60,6 +60,7 @@ function Search() {
             <h2 className="text-2xl font-bold text-gray-800">
               {userData.name || userData.login}
             </h2>
+            <title>{userData.login}</title>
             {userData.bio && (
               <p className="mt-2 text-gray-600 text-center  whitespace-pre-wrap">
                 {userData.bio}

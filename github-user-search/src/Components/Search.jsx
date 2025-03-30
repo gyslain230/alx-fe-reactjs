@@ -61,7 +61,7 @@ function Search() {
               {userData.name || userData.login}
             </h2>
             {userData.bio && (
-              <p className="mt-2 text-gray-600 text-center whitespace-break-spaces whitespace-pre-wrap">
+              <p className="mt-2 text-gray-600 text-center  whitespace-pre-wrap">
                 {userData.bio}
               </p>
             )}

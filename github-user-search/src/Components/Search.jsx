@@ -1,20 +1,14 @@
 import { useState } from "react";
-import githubService from "../services/githubService";
 
-function Search({ onSearch }) {
+function Search() {
   const [username, setUsername] = useState("");
-  const [error, setError] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const userData = await githubService.fetchUserData(username);
-      onSearch(userData); // Pass data to parent component
-      setError("");
-    } catch (err) {
-      setError(err.message);
-      onSearch(null);
-    }
+    // Here you would typically handle the search logic
+    console.log("Searching for:", username);
+    // You might want to pass the username to a parent component
+    // or fetch data from an API here
   };
 
   return (
@@ -33,7 +27,6 @@ function Search({ onSearch }) {
         >
           search
         </button>
-        {error && <p className="text-red-500">{error}</p>}
       </form>
     </>
   );

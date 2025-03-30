@@ -61,7 +61,9 @@ function Search() {
               {userData.name || userData.login}
             </h2>
             {userData.bio && (
-              <p className="mt-2 text-gray-600 text-center">{userData.bio}</p>
+              <p className="mt-2 text-gray-600 text-center whitespace-break-spaces whitespace-pre-wrap">
+                {userData.bio}
+              </p>
             )}
             <a
               href={userData.html_url}

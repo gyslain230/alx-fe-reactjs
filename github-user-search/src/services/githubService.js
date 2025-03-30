@@ -1,5 +1,14 @@
 // githubService.js
 import axios from "axios";
+// In your githubService.js
+const axiosInstance = axios.create({
+  baseURL: import.meta.env.VITE_GITHUB_API_BASE,
+  headers: {
+    Authorization: import.meta.env.VITE_GITHUB_API_TOKEN
+      ? `token ${import.meta.env.VITE_GITHUB_API_TOKEN}`
+      : undefined,
+  },
+});
 
 const API_BASE_SEARCH = "https://api.github.com/search/users";
 const API_BASE_USER = "https://api.github.com/users";

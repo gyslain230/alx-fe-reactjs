@@ -1,9 +1,11 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import Search from "./Components/Search";
 
 function App() {
   return (
     <>
+      <Search />
       <Router>
         <nav>
           <ul>

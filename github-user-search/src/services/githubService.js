@@ -4,8 +4,8 @@ import axios from "axios";
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_GITHUB_API_BASE,
   headers: {
-    Authorization: import.meta.env.VITE_APP_GITHUB_API_KEY
-      ? `token ${import.meta.env.VITE_APP_GITHUB_API_KEY}`
+    Authorization: import.meta.env.VITE_GITHUB_API_KEY
+      ? `Bearer ${import.meta.env.VITE_GITHUB_API_KEY}`
       : undefined,
   },
 });

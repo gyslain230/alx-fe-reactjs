@@ -1,17 +1,57 @@
+// githubService.js
 import axios from "axios";
 
-const fetchUserData = async (username) => {
+const API_BASE_SEARCH = "https://api.github.com/search/users";
+const API_BASE_USER = "https://api.github.com/users";
+
+const buildQueryString = (params) => {
+  let query = [];
+  if (params.username) query.push(`${params.username} in:login`);
+  if (params.location) query.push(`location:${params.location}`);
+  if (params.repos) query.push(`repos:>${params.repos}`);
+  return query.join("+");
+};
+
+// Main search function
+const advancedSearch = async (params) => {
   try {
-    const response = await axios.get(
-      `https://api.github.com/users/${username}`
-    );
+    const response = await axios.get(API_BASE_SEARCH, {
+      params: {
+        q: buildQueryString(params),
+        page: params.page || 1,
+        per_page: 30,
+      },
+    });
     return response.data;
   } catch (error) {
-    if (error.response && error.response.status === 404) {
-      throw new Error("Looks like we can't find the user");
-    }
-    throw new Error("Failed to fetch user data");
+    handleApiError(error);
   }
 };
 
-export default { fetchUserData };
+// Individual user details fetch
+const fetchUserDetails = async (username) => {
+  try {
+    const response = await axios.get(`${API_BASE_USER}/${username}`);
+    return response.data;
+  } catch (error) {
+    handleApiError(error);
+  }
+};
+
+// Common error handler
+const handleApiError = (error) => {
+  if (error.response) {
+    if (error.response.status === 403) {
+      throw new Error("API rate limit exceeded. Please try again later.");
+    }
+    if (error.response.status === 404) {
+      throw new Error("No users found matching your criteria");
+    }
+  }
+  throw new Error("Failed to fetch data from GitHub");
+};
+
+export default {
+  advancedSearch,
+  fetchUserDetails,
+};
